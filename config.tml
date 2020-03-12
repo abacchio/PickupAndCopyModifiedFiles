@@ -1,0 +1,5 @@
+[logfile]
+logfilename="DirLog.json"
+
+[[Ignore]]
+ignorefile="DirLog.json"
