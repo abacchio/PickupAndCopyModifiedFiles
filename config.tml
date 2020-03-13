@@ -1,5 +1,5 @@
-[logfile]
-logfilename="DirLog.json"
+[[ignorefile]]
+Name = "DirLog.json"
 
-[[Ignore]]
-ignorefile="DirLog.json"
+[[ignorefile]]
+Name = "config.tml"

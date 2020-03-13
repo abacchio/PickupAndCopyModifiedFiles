@@ -10,20 +10,22 @@ import (
 	"github.com/PickupAndCopyModifiedFIles/services"
 )
 
-//
+// Config is config
 type Config struct {
-	Logfile string   `toml:"logfilename"`
-	Ignore  []string `toml:"ignorefile"`
+	Ignorefiles []Ignorefile `toml:"ignorefiles"`
+}
+
+// Ignorefile are ignored file.
+type Ignorefile struct {
+	Name string `toml:"name"`
 }
 
 func init() {
-
 	var config Config
 	_, err := toml.DecodeFile("config.tml", &config)
 	if err != nil {
 		panic(err)
 	}
-
 }
 
 func main() {
