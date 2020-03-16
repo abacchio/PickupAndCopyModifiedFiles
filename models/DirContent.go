@@ -12,3 +12,15 @@ type FileInfo struct {
 	Name    string `json:"Name"`
 	ModTime string `json:"ModifiedTime"`
 }
+
+// RemoveByName content by the name.
+func (dir *DirContent) RemoveByName(name string) {
+	result := []FileInfo{}
+	for _, finfo := range dir.Contents {
+		if finfo.Name != name {
+			result = append(result, finfo)
+		}
+	}
+
+	dir.Contents = result
+}

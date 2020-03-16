@@ -20,14 +20,6 @@ type Ignorefile struct {
 	Name string `toml:"name"`
 }
 
-func init() {
-	var config Config
-	_, err := toml.DecodeFile("config.tml", &config)
-	if err != nil {
-		panic(err)
-	}
-}
-
 func main() {
 	current := services.GenerateCurrentDirContent(".")
 
@@ -73,6 +65,17 @@ func main() {
 		}
 
 		transferDirContent := models.DirContent{Root: cd, LogDate: time.Now().String(), Contents: transferContent}
+
+		var config Config
+		_, err := toml.DecodeFile("config.tml", &config)
+		if err != nil {
+			panic(err)
+		}
+
+		for _, ignorefile := range config.Ignorefiles {
+			transferDirContent.RemoveByName(ignorefile.Name)
+		}
+
 		services.GenerateTransferDir(transferDirContent)
 
 		t := time.Now()
