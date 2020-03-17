@@ -10,14 +10,23 @@ import (
 	"github.com/PickupAndCopyModifiedFIles/services"
 )
 
+var config Config
+
 // Config is config
 type Config struct {
-	Ignorefiles []Ignorefile `toml:"ignorefiles"`
+	Ignorefiles []Ignorefile `toml:"ignorefile"`
 }
 
 // Ignorefile are ignored file.
 type Ignorefile struct {
 	Name string `toml:"name"`
+}
+
+func init() {
+	_, err := toml.DecodeFile("config.tml", &config)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
@@ -65,12 +74,6 @@ func main() {
 		}
 
 		transferDirContent := models.DirContent{Root: cd, LogDate: time.Now().String(), Contents: transferContent}
-
-		var config Config
-		_, err := toml.DecodeFile("config.tml", &config)
-		if err != nil {
-			panic(err)
-		}
 
 		for _, ignorefile := range config.Ignorefiles {
 			transferDirContent.RemoveByName(ignorefile.Name)
