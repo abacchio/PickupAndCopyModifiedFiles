@@ -15,6 +15,12 @@ var config Config
 // Config is config
 type Config struct {
 	Ignorefiles []Ignorefile `toml:"ignorefile"`
+	Logfile     Logfile      `toml:"logfile"`
+}
+
+// Logfile defines logfile.
+type Logfile struct {
+	Name string `toml:"name"`
 }
 
 // Ignorefile are ignored file.
@@ -33,14 +39,14 @@ func main() {
 	current := services.GenerateCurrentDirContent(".")
 
 	var past models.DirContent
-	if _, err := os.Open("DirLog.json"); err == nil {
+	if _, err := os.Open(config.Logfile.Name); err == nil {
 		fmt.Println("******************** Read previous data. ********************")
-		past = services.ReadJSON()
+		past = services.ReadJSON(config.Logfile.Name)
 		fmt.Println("END")
 		fmt.Println("******************** Start compare. *************************")
 		if past.Root[3:] != current.Root[3:] {
 			fmt.Println("Root directory has changed, it's unauthorized operation.\nRegenerate JSON file.")
-			services.OutputJSON(current)
+			services.OutputJSON(current, config.Logfile.Name)
 			return
 		}
 
@@ -92,5 +98,5 @@ func main() {
 		fmt.Println("END")
 	}
 
-	services.OutputJSON(current)
+	services.OutputJSON(current, config.Logfile.Name)
 }

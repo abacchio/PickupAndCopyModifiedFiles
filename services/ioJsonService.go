@@ -9,13 +9,13 @@ import (
 )
 
 // OutputJSON outputs Json file
-func OutputJSON(dirContent models.DirContent) {
+func OutputJSON(dirContent models.DirContent, logfilename string) {
 	jsonBytes, err := json.Marshal(dirContent)
 	if err != nil {
 		panic(err)
 	}
 
-	logfile, err := os.Create(`DirLog.json`)
+	logfile, err := os.Create(logfilename)
 	if err != nil {
 		panic(err)
 	}
@@ -25,8 +25,8 @@ func OutputJSON(dirContent models.DirContent) {
 }
 
 // ReadJSON read Json file
-func ReadJSON() models.DirContent {
-	jsonFile, err := ioutil.ReadFile("DirLog.json")
+func ReadJSON(logfilename string) models.DirContent {
+	jsonFile, err := ioutil.ReadFile(logfilename)
 	if err != nil {
 		panic(err)
 	}
