@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/PickupAndCopyModifiedFIles/models"
+	"github.com/PickupModifiedFiles/models"
 )
 
 // FindModedFiles returns modified file's FileInfo

@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/PickupAndCopyModifiedFIles/models"
-	"github.com/PickupAndCopyModifiedFIles/services"
+	"github.com/PickupModifiedFiles/models"
+	"github.com/PickupModifiedFiles/services"
 )
 
 var config Config

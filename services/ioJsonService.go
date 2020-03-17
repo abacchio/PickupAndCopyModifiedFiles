@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/PickupAndCopyModifiedFIles/models"
+	"github.com/PickupModifiedFiles/models"
 )
 
 // OutputJSON outputs Json file

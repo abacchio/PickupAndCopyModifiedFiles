@@ -1,4 +1,4 @@
-module github.com/PickupAndCopyModifiedFIles
+module github.com/PickupModifiedFiles
 
 go 1.13
 

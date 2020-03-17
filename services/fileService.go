@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PickupAndCopyModifiedFIles/models"
+	"github.com/PickupModifiedFiles/models"
 )
 
 // GenerateCurrentDirContent returns DirContent of current directory.
