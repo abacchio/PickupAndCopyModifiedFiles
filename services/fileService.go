@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -21,8 +22,9 @@ func GenerateCurrentDirContent(cd string) models.DirContent {
 func GenerateTransferDir(dirContent models.DirContent) {
 	t := time.Now()
 	date := t.String()[:10]
+	h, m, s := t.Clock()
+	transferDirName := date + "-" + strconv.Itoa(h) + "-" + strconv.Itoa(m) + "-" + strconv.Itoa(s)
 
-	transferDirName := date
 	if finfo, err := os.Stat(transferDirName); os.IsNotExist(err) || !finfo.IsDir() {
 		os.Mkdir(transferDirName, 0777)
 	}
